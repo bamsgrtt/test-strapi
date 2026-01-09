@@ -38,29 +38,54 @@
   </div>
 
   <!-- GALERI -->
-  <div class="container my-4">
+<!-- GALERI -->
+<div class="container my-4">
+  <h3 class="fw-semibold">Dokumentasi</h3>
 
-    <h3 class="fw-semibold">Dokumentasi</h3>
   <div class="row g-3">
 
     <% if (proker.gambar && proker.gambar.length > 0) { %>
       <% proker.gambar.forEach(img => { %>
+
         <div class="col-6 col-md-3">
           <div class="card shadow-sm">
-            <img 
-              src="<%= STRAPI_URL + (img.formats?.small?.url || img.url) %>" 
-              class="card-img-top"
-              alt="<%= img.name %>"
-            >
+
+            <% if (img.mime && img.mime.startsWith('image')) { %>
+              <!-- GAMBAR -->
+              <img 
+                src="<%= STRAPI_URL + (img.formats?.small?.url || img.url) %>" 
+                class="card-img-top"
+                style="height:200px; object-fit:cover;"
+                alt="<%= img.name %>"
+              >
+            <% } %>
+
+            <% if (img.mime && img.mime.startsWith('video')) { %>
+              <!-- VIDEO -->
+              <video
+                controls
+                class="w-100"
+                style="height:200px; object-fit:cover;"
+              >
+                <source
+                  src="<%= STRAPI_URL + img.url %>"
+                  type="<%= img.mime %>"
+                >
+                Browser tidak mendukung video.
+              </video>
+            <% } %>
+
           </div>
         </div>
+
       <% }) %>
     <% } else { %>
-      <p class="text-muted">Tidak ada gambar</p>
+      <p class="text-muted">Tidak ada dokumentasi</p>
     <% } %>
 
   </div>
 </div>
+
 
 </div>
 
