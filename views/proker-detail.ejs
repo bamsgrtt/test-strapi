@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title><%= proker.nama %></title>
+  <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container my-5">
+
+  <a href="/program-kerja" class="btn btn-outline-secondary mb-4">
+    ← Kembali
+  </a>
+
+  <h1><%= proker.nama %></h1>
+  <p class="text-muted">Tanggal: <%= proker.tanggal %></p>
+
+  <hr>
+
+  <!-- DESKRIPSI -->
+  <div class="mb-5">
+    <% if (Array.isArray(proker.deskripsi)) { %>
+      <% proker.deskripsi.forEach(block => { %>
+        <% if (block.type === 'paragraph') { %>
+          <p><%= block.children.map(c => c.text).join('') %></p>
+        <% } %>
+      <% }) %>
+    <% } %>
+  </div>
+
+  <!-- GALERI -->
+  <div class="container my-4">
+  <div class="row g-3">
+
+    <% if (proker.gambar && proker.gambar.length > 0) { %>
+      <% proker.gambar.forEach(img => { %>
+        <div class="col-6 col-md-3">
+          <div class="card shadow-sm">
+            <img 
+              src="<%= STRAPI_URL + (img.formats?.small?.url || img.url) %>" 
+              class="card-img-top"
+              alt="<%= img.name %>"
+            >
+          </div>
+        </div>
+      <% }) %>
+    <% } else { %>
+      <p class="text-muted">Tidak ada gambar</p>
+    <% } %>
+
+  </div>
+</div>
+
+</div>
+
+<script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
