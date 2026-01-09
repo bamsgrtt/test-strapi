@@ -16,15 +16,15 @@
         <div class="card h-100 shadow-sm">
 
           <%
-            const gambar = Array.isArray(proker.gambar) &&
+            const gambarUtama = Array.isArray(proker.gambar) &&
               proker.gambar.length > 0
               ? proker.gambar[0]
               : null;
           %>
 
-          <% if (gambar) { %>
+          <% if (gambarUtama) { %>
             <img
-              src="<%= STRAPI_URL + (gambar.formats?.small?.url || gambar.url) %>"
+              src="<%= STRAPI_URL + (gambarUtama.formats?.small?.url || gambarUtama.url) %>"
               class="card-img-top"
               style="height:200px; object-fit:cover;"
             >

@@ -19,14 +19,19 @@
   <hr>
 
   <!-- DESKRIPSI -->
-  <div class="mb-5">
-    <% if (Array.isArray(proker.deskripsi)) { %>
-      <% proker.deskripsi.forEach(block => { %>
-        <% if (block.type === 'paragraph') { %>
-          <p><%= block.children.map(c => c.text).join('') %></p>
-        <% } %>
-      <% }) %>
-    <% } %>
+  <div class="container my-4 bg-gray">
+    <div class="row">
+
+      <div class=" col-12 border mb-5 rounded-4">
+        <% if (Array.isArray(proker.deskripsi)) { %>
+          <% proker.deskripsi.forEach(block => { %>
+            <% if (block.type === 'paragraph') { %>
+              <p class="m-4"><%= block.children.map(c => c.text).join('') %></p>
+              <% } %>
+              <% }) %>
+              <% } %>
+            </div>
+    </div>
   </div>
 
   <!-- GALERI -->

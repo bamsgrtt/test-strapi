@@ -47,7 +47,8 @@ app.get('/program-kerja', async (req, res) => {
     );
 
     res.render('program-kerja', {
-      prokers: response.data.data
+      prokers: response.data.data,
+      STRAPI_URL: 'http://localhost:1337'
     });
 
   } catch (error) {
